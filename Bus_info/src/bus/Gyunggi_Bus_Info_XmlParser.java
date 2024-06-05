@@ -34,51 +34,41 @@ public class Gyunggi_Bus_Info_XmlParser {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
 
-                String companyId = eElement.getElementsByTagName("companyId").item(0).getTextContent();
-                String companyName = eElement.getElementsByTagName("companyName").item(0).getTextContent();
-                String companyTel = eElement.getElementsByTagName("companyTel").item(0).getTextContent();
-                String districtCd = eElement.getElementsByTagName("districtCd").item(0).getTextContent();
-                String downFirstTime = eElement.getElementsByTagName("downFirstTime").item(0).getTextContent();
-                String downLastTime = eElement.getElementsByTagName("downLastTime").item(0).getTextContent();
-                String endMobileNo = eElement.getElementsByTagName("endMobileNo").item(0).getTextContent();
-                String endStationId = eElement.getElementsByTagName("endStationId").item(0).getTextContent();
-                String endStationName = eElement.getElementsByTagName("endStationName").item(0).getTextContent();
-                String peekAlloc = eElement.getElementsByTagName("peekAlloc").item(0).getTextContent();
-                String regionName = eElement.getElementsByTagName("regionName").item(0).getTextContent();
-                String routeId = eElement.getElementsByTagName("routeId").item(0).getTextContent();
-                String routeName = eElement.getElementsByTagName("routeName").item(0).getTextContent();
-                String routeTypeCd = eElement.getElementsByTagName("routeTypeCd").item(0).getTextContent();
-                String routeTypeName = eElement.getElementsByTagName("routeTypeName").item(0).getTextContent();
-                String startMobileNo = eElement.getElementsByTagName("startMobileNo").item(0).getTextContent();
-                String startStationId = eElement.getElementsByTagName("startStationId").item(0).getTextContent();
-                String startStationName = eElement.getElementsByTagName("startStationName").item(0).getTextContent();
-                String upFirstTime = eElement.getElementsByTagName("upFirstTime").item(0).getTextContent();
-                String upLastTime = eElement.getElementsByTagName("upLastTime").item(0).getTextContent();
-                String nPeekAlloc = eElement.getElementsByTagName("nPeekAlloc").item(0).getTextContent();
-
-                System.out.printf("Company ID: %s\n", companyId);
-                System.out.printf("Company Name: %s\n", companyName);
-                System.out.printf("Company Tel: %s\n", companyTel);
-                System.out.printf("District Code: %s\n", districtCd);
-                System.out.printf("Down First Time: %s\n", downFirstTime);
-                System.out.printf("Down Last Time: %s\n", downLastTime);
-                System.out.printf("End Mobile No: %s\n", endMobileNo);
-                System.out.printf("End Station ID: %s\n", endStationId);
-                System.out.printf("End Station Name: %s\n", endStationName);
-                System.out.printf("Peek Alloc: %s\n", peekAlloc);
-                System.out.printf("Region Name: %s\n", regionName);
-                System.out.printf("Route ID: %s\n", routeId);
-                System.out.printf("Route Name: %s\n", routeName);
-                System.out.printf("Route Type Code: %s\n", routeTypeCd);
-                System.out.printf("Route Type Name: %s\n", routeTypeName);
-                System.out.printf("Start Mobile No: %s\n", startMobileNo);
-                System.out.printf("Start Station ID: %s\n", startStationId);
-                System.out.printf("Start Station Name: %s\n", startStationName);
-                System.out.printf("Up First Time: %s\n", upFirstTime);
-                System.out.printf("Up Last Time: %s\n", upLastTime);
-                System.out.printf("Non-Peek Alloc: %s\n", nPeekAlloc);
+                System.out.printf("Company ID: %s\n", getTagValue("companyId", eElement));
+                System.out.printf("Company Name: %s\n", getTagValue("companyName", eElement));
+                System.out.printf("Company Tel: %s\n", getTagValue("companyTel", eElement));
+                System.out.printf("District Code: %s\n", getTagValue("districtCd", eElement));
+                System.out.printf("Down First Time: %s\n", getTagValue("downFirstTime", eElement));
+                System.out.printf("Down Last Time: %s\n", getTagValue("downLastTime", eElement));
+                System.out.printf("End Mobile No: %s\n", getTagValue("endMobileNo", eElement));
+                System.out.printf("End Station ID: %s\n", getTagValue("endStationId", eElement));
+                System.out.printf("End Station Name: %s\n", getTagValue("endStationName", eElement));
+                System.out.printf("Peek Alloc: %s\n", getTagValue("peekAlloc", eElement));
+                System.out.printf("Region Name: %s\n", getTagValue("regionName", eElement));
+                System.out.printf("Route ID: %s\n", getTagValue("routeId", eElement));
+                System.out.printf("Route Name: %s\n", getTagValue("routeName", eElement));
+                System.out.printf("Route Type Code: %s\n", getTagValue("routeTypeCd", eElement));
+                System.out.printf("Route Type Name: %s\n", getTagValue("routeTypeName", eElement));
+                System.out.printf("Start Mobile No: %s\n", getTagValue("startMobileNo", eElement));
+                System.out.printf("Start Station ID: %s\n", getTagValue("startStationId", eElement));
+                System.out.printf("Start Station Name: %s\n", getTagValue("startStationName", eElement));
+                System.out.printf("Up First Time: %s\n", getTagValue("upFirstTime", eElement));
+                System.out.printf("Up Last Time: %s\n", getTagValue("upLastTime", eElement));
+                System.out.printf("Non-Peek Alloc: %s\n", getTagValue("nPeekAlloc", eElement));
                 System.out.println();
             }
         }
+    }
+
+    private String getTagValue(String tag, Element element) {
+        NodeList nodeList = element.getElementsByTagName(tag);
+        if (nodeList.getLength() > 0) {
+            Node node = nodeList.item(0);
+            if (node != null) {
+                return node.getTextContent();
+            }
+        }
+       
+        return "N/A";  // Default value if the tag is not found
     }
 }
